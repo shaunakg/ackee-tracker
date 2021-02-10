@@ -25,8 +25,8 @@
     "url": "https://github.com/electerious/ackee-tracker.git"
   },
   "files": [
-    "dist",
-    "src"
+    "src",
+    "dist"
   ],
   "devDependencies": {
     "@electerious/eslint-config": "^1.4.0",
