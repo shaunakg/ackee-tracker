@@ -1,4 +1,5 @@
 import platform from 'platform'
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const isBrowser = typeof window !== 'undefined'
 
@@ -64,11 +65,7 @@ const isFakeId = function(id) {
  * @returns {String} source
  */
 const source = function() {
-
-	const source = (location.search.split(`source=`)[1] || '').split('&')[0]
-
-	return source === '' ? undefined : source
-
+	return undefined
 }
 
 /**
@@ -79,25 +76,12 @@ const source = function() {
 export const attributes = function(detailed = false) {
 
 	const defaultData = {
-		siteLocation: window.location.href,
-		siteReferrer: document.referrer,
-		source: source()
+		siteLocation: "",
+		siteReferrer: "",
+		source: undefined
 	}
 
-	const detailedData = {
-		siteLanguage: (navigator.language || navigator.userLanguage).substr(0, 2),
-		screenWidth: screen.width,
-		screenHeight: screen.height,
-		screenColorDepth: screen.colorDepth,
-		deviceName: platform.product,
-		deviceManufacturer: platform.manufacturer,
-		osName: platform.os.family,
-		osVersion: platform.os.version,
-		browserName: platform.name,
-		browserVersion: platform.version,
-		browserWidth: window.outerWidth,
-		browserHeight: window.outerHeight
-	}
+	const detailedData = {};
 
 	return {
 		...defaultData,
@@ -301,15 +285,15 @@ export const create = function(server, opts) {
 		updateAction: noop
 	}
 
-	if (opts.ignoreLocalhost === true && isLocalhost(location.hostname) === true) {
-		console.warn('Ackee ignores you because you are on localhost')
-		return fakeInstance
-	}
+// 	if (opts.ignoreLocalhost === true && isLocalhost(location.hostname) === true) {
+// 		console.warn('Ackee ignores you because you are on localhost')
+// 		return fakeInstance
+// 	}
 
-	if (isBot(navigator.userAgent) === true) {
-		console.warn('Ackee ignores you because you are a bot')
-		return fakeInstance
-	}
+// 	if (isBot(navigator.userAgent) === true) {
+// 		console.warn('Ackee ignores you because you are a bot')
+// 		return fakeInstance
+// 	}
 
 	// Creates a new record on the server and updates the record
 	// very x seconds to track the duration of the visit. Tries to use
@@ -416,9 +400,9 @@ export const create = function(server, opts) {
 
 }
 
-// Only run Ackee automatically when executed in a browser environment
-if (isBrowser === true) {
+// // Only run Ackee automatically when executed in a browser environment
+// if (isBrowser === true) {
 
-	detect()
+// 	detect()
 
-}
+// }
