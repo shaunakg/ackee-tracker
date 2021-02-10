@@ -1,5 +1,5 @@
 import platform from 'platform'
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var XMLHttpRequest = require("xhr2");
 
 const isBrowser = typeof window !== 'undefined'
 
