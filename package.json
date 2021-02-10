@@ -1,8 +1,9 @@
 {
   "name": "ackee-tracker",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "authors": [
-    "Tobias Reich <tobias@electerious.com>"
+    "Tobias Reich <tobias@electerious.com>",
+    "Shaunak G <hello@srg.codes>"
   ],
   "description": "Transfer data to Ackee",
   "main": "dist/ackee-tracker.min.js",
